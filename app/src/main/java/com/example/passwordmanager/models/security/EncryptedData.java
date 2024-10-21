@@ -1,4 +1,4 @@
-package com.example.passwordmanager.models;
+package com.example.passwordmanager.models.security;
 
 public class EncryptedData {
     private byte[] iv;

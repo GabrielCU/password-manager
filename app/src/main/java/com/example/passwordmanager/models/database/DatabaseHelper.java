@@ -1,4 +1,4 @@
-package com.example.passwordmanager.models;
+package com.example.passwordmanager.models.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Base64;
 import androidx.annotation.Nullable;
+import com.example.passwordmanager.models.Password;
+import com.example.passwordmanager.models.security.*;
 
 import javax.crypto.SecretKey;
 import java.security.PrivateKey;
@@ -81,7 +83,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             PublicKey publicKey = KeyStoreManager.getPublicKey();
             byte[] encryptedAESKey = RSAEncryptionHelper.encryptAESKey(aesKey, publicKey);
 
-            // Store the encrypted AES key
             EncryptedKeyStorage.storeEncryptedAESKey(context, encryptedAESKey);
 
             return aesKey;
@@ -92,6 +93,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    // get encrypted passwords
     public List<Password> getPasswordList() {
         List<Password> passwords = new ArrayList<>();
 
@@ -108,6 +110,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return passwords;
     }
 
+    // Get decrypted passwords
     public List<Password> secureGetPasswordList(Context context) {
         List<Password> passwords = new ArrayList<>();
 
@@ -119,24 +122,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 Password password = Password.fromCursor(cursor);
 
                 try {
-                    // Retrieve the encrypted password and IV
                     String encryptedPassword = cursor.getString(cursor.getColumnIndex("password"));
                     String ivString = cursor.getString(cursor.getColumnIndex("iv"));
 
-                    // Decode from Base64
                     byte[] ciphertext = Base64.decode(encryptedPassword, Base64.DEFAULT);
                     byte[] iv = Base64.decode(ivString, Base64.DEFAULT);
 
-                    // Decrypt the password
                     EncryptedData encryptedData = new EncryptedData(iv, ciphertext);
                     SecretKey aesKey = getSecretKey(context);
                     String decryptedPassword = EncryptionUtils.decrypt(encryptedData, aesKey);
 
-                    // Set the decrypted password
                     password.setPassword(decryptedPassword);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    // Handle decryption error
                     password.setPassword(null);
                 }
 

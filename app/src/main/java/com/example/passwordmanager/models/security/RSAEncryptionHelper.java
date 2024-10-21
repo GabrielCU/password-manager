@@ -1,4 +1,4 @@
-package com.example.passwordmanager.models;
+package com.example.passwordmanager.models.security;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;

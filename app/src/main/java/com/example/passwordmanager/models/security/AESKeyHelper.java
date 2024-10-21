@@ -1,4 +1,4 @@
-package com.example.passwordmanager.models;
+package com.example.passwordmanager.models.security;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;

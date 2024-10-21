@@ -1,4 +1,4 @@
-package com.example.passwordmanager.models;
+package com.example.passwordmanager.models.security;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -9,7 +9,6 @@ public class EncryptionUtils {
     private static final String AES_MODE = "AES/CBC/PKCS5Padding";
     private static final int IV_LENGTH = 16; // 16 bytes IV for AES
 
-    // Encrypts the plaintext password
     public static EncryptedData encrypt(String plaintext, SecretKey aesKey) throws Exception {
         Cipher cipher = Cipher.getInstance(AES_MODE);
         byte[] iv = generateIV();
@@ -20,7 +19,6 @@ public class EncryptionUtils {
         return new EncryptedData(iv, ciphertext);
     }
 
-    // Decrypts the ciphertext password
     public static String decrypt(EncryptedData encryptedData, SecretKey aesKey) throws Exception {
         Cipher cipher = Cipher.getInstance(AES_MODE);
         IvParameterSpec ivSpec = new IvParameterSpec(encryptedData.getIv());
@@ -30,7 +28,6 @@ public class EncryptionUtils {
         return new String(plaintext, "UTF-8");
     }
 
-    // Generates a random IV
     private static byte[] generateIV() {
         byte[] iv = new byte[IV_LENGTH];
         SecureRandom random = new SecureRandom();

@@ -10,12 +10,14 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import com.example.passwordmanager.models.*;
+import com.example.passwordmanager.models.database.DatabaseHelper;
+import com.example.passwordmanager.models.database.SavePassword;
+import com.example.passwordmanager.models.generators.InsecurePasswordGenerator;
+import com.example.passwordmanager.models.generators.PasswordGenerator;
+import com.example.passwordmanager.models.generators.SecurePasswordGenerator;
+import com.example.passwordmanager.models.security.KeyStoreManager;
 
 import java.util.List;
 
