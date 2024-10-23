@@ -9,11 +9,13 @@
         tools:context=".MainActivity">
 
     <LinearLayout
-            android:layout_width="388dp"
-            android:layout_height="193dp"
+            android:layout_width="380dp"
+            android:layout_height="346dp"
             android:orientation="vertical"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintTop_toTopOf="parent">
 
         <TextView
@@ -27,7 +29,7 @@
 
         <Button
                 android:id="@+id/button_generate_password"
-                android:layout_marginTop="0dp"
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Generate"/>
@@ -35,14 +37,16 @@
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
 
             <Button
                     android:id="@+id/button_password_copy"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginRight="10dp"
                     android:text="Copy"
             />
 
@@ -51,15 +55,19 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginLeft="10dp"
                     android:text="Save"
             />
-        </LinearLayout>
 
-        <LinearLayout
-                android:layout_marginTop="30dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
         </LinearLayout>
+        <Button
+                android:id="@+id/button_view_passwords"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="View Passwords"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginBottom="10dp"/>
+
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,13 +3,16 @@ package com.example.passwordmanager.models;
 import android.content.ContentValues;
 import android.database.Cursor;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Password {
+public class Password implements Serializable {
 
     private int id;
     private String name, login, password;
     private Date updateDate;
+    private static final long serialVersionUID = 1L;
+
 
     public Password(String name, String login, String password) {
         this.name = name;
@@ -60,4 +63,10 @@ public class Password {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getName() { return this.name; }
+
+    public void setName(String name) { this.name = name; }
+
+    public String getLogin() { return this.login; }
 }

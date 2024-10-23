@@ -13,7 +13,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.passwordmanager.models.*;
 import com.example.passwordmanager.models.database.DatabaseHelper;
-import com.example.passwordmanager.models.database.SavePassword;
 import com.example.passwordmanager.models.generators.InsecurePasswordGenerator;
 import com.example.passwordmanager.models.generators.PasswordGenerator;
 import com.example.passwordmanager.models.generators.SecurePasswordGenerator;
@@ -24,9 +23,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private TextView textGeneratedPassword;
-    private Button btnGeneratePassword, btnCopyPassword, btnSavePassword;
+    private Button btnGeneratePassword, btnCopyPassword, btnSavePassword, btnViewPasswords;
 
-    private final int passwordLength = 12;
+    private final int passwordLength = 15;
 
 
     @Override
@@ -62,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         btnGeneratePassword = findViewById(R.id.button_generate_password);
         btnCopyPassword = findViewById(R.id.button_password_copy);
         btnSavePassword = findViewById(R.id.button_password_save);
+        btnViewPasswords = findViewById(R.id.button_view_passwords);
         btnSavePassword.setEnabled(false);
     }
 
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             PasswordGenerator insecurePasswordGenerator = new InsecurePasswordGenerator(passwordLength);
 
             String secureGeneratedPassword = securePasswordGenerator.generatePassword();
-            String insecureGeneratedPassword = insecurePasswordGenerator.generatePassword();
+            //String insecureGeneratedPassword = insecurePasswordGenerator.generatePassword();
 
             textGeneratedPassword.setText(secureGeneratedPassword);
 
@@ -87,9 +87,15 @@ public class MainActivity extends AppCompatActivity {
 
         btnSavePassword.setOnClickListener(view -> {
             String generatedPassword = textGeneratedPassword.getText().toString();
-            Intent intent = new Intent(MainActivity.this, SavePassword.class);
+            Intent intent = new Intent(MainActivity.this, SavePasswordActivity.class);
             intent.putExtra("password", generatedPassword);
             startActivity(intent);
         });
+
+        btnViewPasswords.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, PasswordListActivity.class);
+            startActivity(intent);
+        });
+
     }
 }

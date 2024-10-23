@@ -13,8 +13,10 @@
             android:theme="@style/Theme.PasswordManager"
             tools:targetApi="31">
         <activity
-                android:name=".models.database.SavePassword"
+                android:name=".SavePasswordActivity"
                 android:exported="false"/>
+        <activity android:name=".PasswordListActivity"
+                  android:exported="false"/>
         <activity
                 android:name=".MainActivity"
                 android:exported="true">
