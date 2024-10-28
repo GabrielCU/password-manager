@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
         DatabaseHelper databaseHelper = new DatabaseHelper(MainActivity.this);
 
         // Insecure method
-        //List<Password> passwordList = databaseHelper.getPasswordList();
-        List<Password> passwordList = databaseHelper.secureGetPasswordList(MainActivity.this);
+        List<Password> passwordList = databaseHelper.getPasswordList();
+        //List<Password> passwordList = databaseHelper.secureGetPasswordList(MainActivity.this);
 
         Log.e("PASSWORD_LIST", passwordList.toString());
     }
