@@ -49,9 +49,8 @@ public class MainActivity extends AppCompatActivity {
     private void showSavedPasswords() {
         DatabaseHelper databaseHelper = new DatabaseHelper(MainActivity.this);
 
-        // Insecure method
-        //List<Password> passwordList = databaseHelper.getPasswordList();
-        List<Password> passwordList = databaseHelper.secureGetPasswordList(MainActivity.this);
+        List<Password> passwordList = databaseHelper.getPasswordList();
+        //List<Password> passwordList = databaseHelper.secureGetPasswordList(MainActivity.this);
 
         Log.e("PASSWORD_LIST", passwordList.toString());
     }
@@ -71,10 +70,10 @@ public class MainActivity extends AppCompatActivity {
             PasswordGenerator securePasswordGenerator = new SecurePasswordGenerator(passwordLength);
             PasswordGenerator insecurePasswordGenerator = new InsecurePasswordGenerator(passwordLength);
 
-            String secureGeneratedPassword = securePasswordGenerator.generatePassword();
-            //String insecureGeneratedPassword = insecurePasswordGenerator.generatePassword();
+            //String password = securePasswordGenerator.generatePassword();
+            String password = insecurePasswordGenerator.generatePassword();
 
-            textGeneratedPassword.setText(secureGeneratedPassword);
+            textGeneratedPassword.setText(password);
 
             btnSavePassword.setEnabled(true);
         });

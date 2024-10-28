@@ -41,8 +41,8 @@ public class SavePasswordActivity extends AppCompatActivity {
                     editPasswordValue.getText().toString());
 
             // insecure save
-            // boolean saved = databaseHelper.insert(password);
-            boolean saved = databaseHelper.secureInsert(password, SavePasswordActivity.this);
+            boolean saved = databaseHelper.insert(password);
+            // boolean saved = databaseHelper.secureInsert(password, SavePasswordActivity.this);
             if (saved) {
                 Toast.makeText(this, "Password saved", Toast.LENGTH_SHORT).show();
                 btnSave.setEnabled(false);
